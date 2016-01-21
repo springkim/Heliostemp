@@ -3,7 +3,6 @@ use strict;
 use warnings;
 use CGI;
 use DBI;
-use Digest::SHA qw(sha256_hex);
 require 'css_helper.pl';
 require 'login/info.pl';
 require 'login/aes.pl';
@@ -26,7 +25,7 @@ $solve_percent=$solve_percent."%";
 
 #=======database 
 my @emblem_image;
-#================
+
 
 my $solve_hard = "102";
 my $solve_mid = "6";
@@ -90,6 +89,7 @@ my $dot_r_2_2=PrintBigDot("0","0","130","10").PrintSmallDot("0","0","130","10");
 my $dot_r_2_3=PrintBigDot("0","0","70","10").PrintSmallDot("0","0","70","10");
 my $dot_r_3_1=PrintBigDot("0","0","130","30").PrintSmallDot("0","0","130","30");
 my $dot_r_3_2=PrintBigDot("0","0","70","30").PrintSmallDot("0","0","70","30");
+my $dot_emblem=PrintBigDot("0","0","0","70").PrintSmallDot("0","0","0","70");
 #==============================RIGHT DIV 프린팅 요소==============================
 my $query="SELECT count(ui_id) FROM userinfo";
 my $state=$con->prepare($query);
@@ -100,6 +100,8 @@ $state->finish();
 $con->disconnect();
 #==============================WRITE PERL CGI==============================
 print $q->header(-charset=>"UTF-8");
+
+
 print <<EOF
 <html>
 <head>
@@ -195,12 +197,45 @@ print <<EOF
             	</div>
          	</div>
          	<div class= "user_state_3">
-         		<img src="$emblem_image[0]"  width="70px" height="70px">
+         		<div class= "user_state_3_1">
+         			$dot_emblem
+         			<img src="$emblem_image[0]"  width="70px" height="70px">
+         		</div>
+         		<div class= "user_state_3_2">
+         			$dot_emblem
+         			<img src="$emblem_image[1]"  width="70px" height="70px">
+         		</div>
+         		<div class= "user_state_3_3">
+         			$dot_emblem
+         			<img src="$emblem_image[2]"  width="70px" height="70px">
+         		</div>
+         		<div class= "user_state_3_4">
+         			$dot_emblem
+         			<img src="$emblem_image[3]"  width="70px" height="70px">
+         		</div>
+         		<div class= "user_state_3_5">
+         			$dot_emblem
+         			<img src="$emblem_image[4]"  width="70px" height="70px">
+         		</div>
+         		<div class= "user_state_3_6">
+         			$dot_emblem
+         			<img src="$emblem_image[5]"  width="70px" height="70px">
+         		</div>
+         		<div class= "user_state_3_7">
+         			$dot_emblem
+         			<img src="$emblem_image[6]"  width="70px" height="70px">
+         		</div>
+         		<div class= "user_state_3_8">
+         			$dot_emblem
+         			<img src="$emblem_image[7]"  width="70px" height="70px">
+         		</div>
+         		<div class= "user_state_3_9">
+         			$dot_emblem
+         			<img src="$emblem_image[8]"  width="70px" height="70px">
+         		</div>
          	</div>
-         	<div class= "user_state_4">
-         	</div>
-         	<div class= "user_state_5">
-         	</div>
+         	
+         	
       	</div>
    	</div>
 </div>
@@ -248,5 +283,3 @@ print <<EOF
 </html>
 EOF
 ;
-
-#<a href="login/logout.pl">LOGOUT</a>

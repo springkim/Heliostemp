@@ -12,108 +12,116 @@ use warnings;
 use CGI;
 use DBI;
 use File::Copy;
-use Time::Stamp 'gmstamp', 'parsegm';
+use Digest::SHA3 qw(sha3_512_hex);
+use Crypt::Salt;
 require 'info.pl';
-
+require 'aes.pl';
 #==============================Ready for CGI.===================================
-my $q=new CGI;
-my $con=DBI->connect(GetDB(),GetID(),GetPW());
+my $q = new CGI;
+my $con = DBI->connect( GetDB(), GetID(), GetPW() );
 
+#==============================HTML String==============================
+my $explain = '<p class="leftP">Your ID</p>';
+my $input_text =
+'<input type="text" id="ID" value="" autocomplete="off" name="ID" placeholder="ID" onkeyup="id_keyup()" onblur="id_keyup()" maxlength="64"></input>';
+my $salt_hidden="";
+my $button_text="Next";
+my $function_name="id_submit()";
 #==============================Recive 'Form' data.==============================
-
-my $id=$q->param('ID');
-my $pw=$q->param('EPW');
-my $salt_temp=$q->param("SALT_TEMP");
+my $id   = $q->param('HID');
+my $pw   = $q->param('HPW');
+my $salt = $q->param("SALT");
 #==============================================================
-my $iv = "dGdW9dB94c0UFxBGDyC3b66EHg3uGApZ";
-my $passPhrase = "ZWslYcAfub7RehxUlyvg3FpXXuJ6XYTUxP6NoQ2Bic9wJbcqPOjHzSPGchI6tQvV";
-my $query = "";
 my $state;
-my $salt;
-my $real_pw="";
-my $submit_file="login.pl";
-#========================================================
-if($id){
-	$query = "SELECT ui_timeStamp FROM userinfo WHERE ui_id = \'$id\'";
-	$state=$con->prepare($query);
-	$state->execute();
-	my @row = $state->fetchrow_array;
-	$salt= $row[0];
-	$query = "SELECT ui_pw FROM userinfo WHERE ui_id = \'$id\'";
-	$state=$con->prepare($query);
-	$state->execute();
-	@row = $state->fetchrow_array;
-	$real_pw=$row[0];
-	$con->disconnect(); 
-	$submit_file="set_cookie.pl";
-}else{
-	$salt_temp=parsegm gmstamp."";
-	$salt="";
-	$con->disconnect();	
+my $c="";
+my $redirect_script="";
+#=========================in input login==============================
+if ($id) {
+	if ($pw) {
+		$state = $con->prepare("SELECT ui_salt2 FROM userinfo WHERE ui_id = \'$id\'");
+		$state->execute();
+		my @row = $state->fetchrow_array;
+		
+		$pw=sha3_512_hex($row[0].$pw);
+		$state = $con->prepare("SELECT count(ui_id) FROM userinfo WHERE ui_id = \'$id\' and ui_pw=\'$pw\'");
+		$state->execute();
+		@row = $state->fetchrow_array;
+		if($row[0]=="1"){
+			#save cookie
+			my $enc_name=AES_Encrypt("bluecandle_helios_cookie_id");
+			chop($enc_name);
+			chop($enc_name);
+			chop($enc_name);
+			my $enc_id=AES_Encrypt($id);
+			$c=$q->cookie(-name=>$enc_name,-value=>$enc_id);
+			$redirect_script='<script>window.location="../index.pl";</script>';
+		}else{
+			print $q->redirect("login.pl");
+		}
+	}
+	else {	#only input id
+		$state = $con->prepare("SELECT ui_salt1 FROM userinfo WHERE ui_id = \'$id\'");
+		$state->execute();
+		my @row = $state->fetchrow_array;
+		if(!$row[0]){
+			$row[0]=salt(32);
+		}
+		$salt_hidden="<input type=\"hidden\" id=\"SALT\" name=\"SALT\" value=\"$row[0]\"/>";
+		$explain='<p class="leftP">Your Password</p>';
+		$input_text='<input type="password" id="PW" autocomplete="off" name="PW" placeholder="PW" onkeyup="pw_keyup()" onblur="pw_keyup()" maxlength="64"></input>';
+		$button_text="Login";
+		$function_name="pw_submit()";
+	}
 }
+
 #------------------------------------end database-------------------------------
-print $q->header(-charset=>"UTF-8");
+if($c){
+	print $q->header(-cookie=>$c);
+}else{
+	print $q->header( -charset => "UTF-8" );
+}
 print <<EOF
 <head>
 	<title>BlueCandle</title>
 	<link rel="stylesheet" type="text/css" href="css/signup.css" />
-	<script src="javascript/AesUtil.js"></script>
-	<script src="javascript/aes.js"></script>
+	<script src="javascript/sha3.js"></script>
 	<script src="javascript/pbkdf2.js"></script>
+	<script src="javascript/signup.js" type="text/javascript"></script>
 	<script src="javascript/login.js" type="text/javascript"></script>
-EOF
-;
-if($id){
-	print "
-	<script>
-		var aesUtil = new AesUtil(192, 500);
-		var dec = aesUtil.decrypt(\"$salt_temp\", \"$iv\", \"$passPhrase\", \"$pw\");
-		var aesUtil2 = new AesUtil(256, 1000);
-		var enc = aesUtil2.encrypt(\"$salt\", \"$iv\", \"$passPhrase\", dec);
-		if(enc==\"$real_pw\"){
-			global=setInterval(function(){loginComplete()},500);
-		}else{
-			alert(\"login fail\");
-			window.location=\"login.pl\";
-		}
-	</script>";
-}
-
-print <<EOF
+	$redirect_script
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 
 <body>
-EOF
-;
-print <<EOF
-	<form id="loginForm" action="$submit_file" method="post" ENCTYPE="multipart/form-data">
+	<form id="loginForm" action="login.pl" method="post" ENCTYPE="multipart/form-data">
 		<div class="container">
 			<div class="outer">
 				<div class="inner">
 					<div class="centered_inner_left">
-						<p class="leftP">Your ID</p>
-						<p class="leftP">Your Password</p>
+						$explain
 					</div>
 					<section class="webdesigntuts-workshop">
-					<input type="hidden" id="IV"  value="$iv"></input>
-					<input type="hidden" id="SALT" name="SALT" value="$salt"></input>
-					<input type="hidden" id="SALT_TEMP" name="SALT_TEMP" value="$salt_temp"></input>
-					<input type="hidden" id="PASSPHRASE"  value="$passPhrase"></input>
-					<input type="hidden" id="EPW" name="EPW" value=""></input>
-					<input type="text" id="ID" value="$id" autocomplete="off" name="ID" placeholder="ID" onkeyup="id_keyup()" onblur="id_keyup()" maxlength="64"></input>	
-					<input type="password" id="PW" autocomplete="off" name="PW" placeholder="PW" maxlength="64"></input>
-					<input type="submit" value="Log In" onclick="return CheckSubmit()"></input>
+					$salt_hidden
+					$input_text
+					
+					<input type="hidden" id="HPW" name="HPW" value=""></input>
+					<input type="hidden" id="HID" name="HID" value="$id"></input>
+					
+					<input type="submit" value="$button_text" onclick="return $function_name"></input>
 	</form>
 					<form action="signup.pl" >
 						<input type="submit" value="Sign Up" style="position:relative;left:-20px;top:-100px">
 					</form>
 					</section>
 				</div>
+				
+				<div id="msg" class="centered_inner_right2">
+						<div class='warn' id="ivchar" style="visibility:hidden;top:175px">Invaild character</div>
+				</div>			
 			</div>
 		</div>
-	</form>
+</body>
+</html>
 EOF
 ;
-print"</body></html>";
 

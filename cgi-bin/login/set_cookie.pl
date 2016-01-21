@@ -10,13 +10,17 @@
 use strict;
 use warnings;
 use CGI;
-use Digest::SHA3 qw(sha3_512_hex);
+require 'aes.pl';
 my $q=new CGI;
-my $enc_name=sha3_512_hex("bluecandle_helios_cookie_id");
-my $id=$q->param("ID");
+my $enc_name=AES_Encrypt("bluecandle_helios_cookie_id");
+chop($enc_name);
+chop($enc_name);
+chop($enc_name);
+my $id=$q->param("HID");
 my $enc_id="";
 if($id){
-	$enc_id=sha3_512_hex($id);
+	$enc_id=AES_Encrypt($id);
+	
 }
 my $c=$q->cookie(-name=>$enc_name,-value=>$enc_id);
 
@@ -26,10 +30,12 @@ print <<EOF
 	<head>
 		<title>BlueCandle</title>
 		<script>
-			window.location="../index.pl";
+			//window.location="../index.pl";
 		</script>
 	</head>
 	<body>
+		<p>$enc_id</p>
+		<p>$enc_name</p>
 	</body>
 </html>
 EOF

@@ -2,7 +2,7 @@
 use CGI;
 
 #	@name : PrintDot
-#	@comment : div의 꼭지점에 점을 찍습니다.
+#	@comment : 
 #	@param1 : xSrc
 #	@param2 : ySrc
 #	@param3 : width

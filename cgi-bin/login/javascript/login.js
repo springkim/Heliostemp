@@ -1,33 +1,23 @@
 var global;
-function CheckSubmit(){
+function id_submit() {
 	var id = document.getElementById("ID").value;
-	var pw = document.getElementById("PW").value;
-	
-	if(id == "" || pw == ""){
-		alert("Please enter all information.");
+
+	if (id == "") {
+		alert("Please enter id.");
 		return false;
 	}
-	// AES256 암호화
-	var iv = document.getElementById("IV").value;
-	var salt = document.getElementById("SALT_TEMP").value;
-	var passPhrase = document.getElementById("PASSPHRASE").value;
-	
-	var aesUtil = new AesUtil(192, 500);
-	
-	var enc = aesUtil.encrypt(salt, iv, passPhrase, pw);
-	document.getElementById("EPW").value = enc;
+	var enc_id = CryptoJS.SHA3(id);
+	document.getElementById("HID").value = enc_id;
 	return true;
-	
 }
-
-function id_keyup() {
-	var i = document.getElementById("ID");
-	// 알파벳,숫자,언더바가 아니면 삭제한다.
-	if (i.value.length > 0) {
-		i.value = i.value.replace(/[^(\d|a-z|A-Z|_)]+/g, '');
+function pw_submit() {
+	var pw = document.getElementById("PW").value;
+	var salt=document.getElementById("SALT").value;
+	if (pw == "") {
+		alert("Please enter password.");
+		return false;
 	}
-}
-function loginComplete(){
-	clearTimeout(global);
-	document.forms["loginForm"].submit();
+	var enc_pw = CryptoJS.SHA3(salt+pw);
+	document.getElementById("HPW").value = enc_pw;
+	return true;
 }

@@ -23,6 +23,6 @@ sub execute($) {
 
 
 execute("SELECT * FROM userinfo");
-#execute("SELECT * FROM emblem");
-#execute("SELECT * FROM userinfo_emblem");
+execute("SELECT * FROM emblem");
+execute("SELECT * FROM userinfo_emblem");
 
