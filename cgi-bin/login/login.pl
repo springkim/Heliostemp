@@ -16,6 +16,8 @@ use Digest::SHA3 qw(sha3_512_hex);
 use Crypt::Salt;
 require 'info.pl';
 require 'aes.pl';
+use CGI                 qw( );
+use HTTP::BrowserDetect qw( );
 #==============================Ready for CGI.===================================
 my $q = new CGI;
 my $con = DBI->connect( GetDB(), GetID(), GetPW() );
@@ -54,6 +56,16 @@ if ($id) {
 			chop($enc_name);
 			my $enc_id=AES_Encrypt($id);
 			$c=$q->cookie(-name=>$enc_name,-value=>$enc_id);
+			
+			my $ip = $q->remote_host;
+			my ($sec, $min, $hour, $mday, $mon, $year, $wday, $yday, $isdst) = localtime;
+			my $date=($year+1900).".".($mon+1).".".($mday).". "."$hour:"."$min:"."$sec";
+			
+			my $bd = HTTP::BrowserDetect->new($q->user_agent());
+			my $env=$bd->browser_string(). ' '. $bd->public_version();
+			my $query = "INSERT INTO userlog VALUES(\'$id\',\'$date\',\'$ip\',\'$env\')";
+			$con->do($query);
+			
 			$redirect_script='<script>window.location="../index.pl";</script>';
 		}else{
 			print $q->redirect("login.pl");
@@ -73,7 +85,7 @@ if ($id) {
 		$function_name="pw_submit()";
 	}
 }
-
+$con->disconnect();
 #------------------------------------end database-------------------------------
 if($c){
 	print $q->header(-cookie=>$c);

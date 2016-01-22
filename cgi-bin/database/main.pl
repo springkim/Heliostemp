@@ -24,11 +24,15 @@ sub CreateTable($){
 		$con->do($in);
 	}
 }
+sub DeleteUserPhoto(){
+	system("rm ../login/photo/*");	
+}
 open(TEXT,"<table.txt") || die $!;
 $/=undef;
 my $data=<TEXT>;
 
 DropTable($data);
+DeleteUserPhoto();
 CreateTable($data);
 
 

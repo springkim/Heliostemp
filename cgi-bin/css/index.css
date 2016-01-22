@@ -9,7 +9,7 @@
 @import url(https://fonts.googleapis.com/css?family=Poiret+One);
 
 @import url(https://fonts.googleapis.com/css?family=Titillium+Web:900);
-
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:700italic);
 html, body {
 	background: url('../image/bkgnd-dot.bmp');
 	height: 98%;
@@ -323,7 +323,7 @@ html, body {
 	position: absolute;
 	top: 250px;
 	width: 230px;
-	height: 500px;
+	height: 460px;
 }
 
 .user_state_1 {
@@ -605,6 +605,34 @@ table.type07 td {
 	text-align: center;
 	vertical-align: center;
 	horizontal-align: center;
+}
+.user_log_tag{
+	border-top: 1px solid #9EC6C7;
+	border-bottom: 1px solid #9EC6C7;
+	background-color: rgba(255, 55, 255, 0);
+	position: absolute;
+	top:720px;
+	width: 230px;
+	text-align: left;
+	vertical-align: center;
+	height: 40px;
+	line-height: 5px;
+	font-family: 'Roboto Condensed', sans-serif;
+	color: #7CA7AE;
+	font-size: 12pt;
+	text-align:center;
+}
+.user_log{
+	background-color: rgba(0, 255, 255, 0);
+	position: absolute;
+	top: 760px;
+	width: 230px;
+	height: 150px;
+	font-size: 11px;
+	color:#9EC6C7;
+	text-align:center;
+	border-bottom: 1px solid #9EC6C7;
+	font-family: 'Titillium Web', sans-serif;
 }
 /*================================================================================================*/
 /*================================================================================================*/

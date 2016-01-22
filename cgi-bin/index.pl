@@ -31,7 +31,8 @@ my @emblem_image;
 my $solve_hard = "102";
 my $solve_mid = "6";
 my $solve_easy = "2";
-
+my @log_data;
+my $log_count=0;
 
 #======
 
@@ -64,11 +65,22 @@ if($c){
 		push @emblem_image,$arr[0];
 	}
 	@emblem_image=sort @emblem_image;
+	
+	
+	$query ="SELECT ul_ip, ul_env, ul_date FROM userlog WHERE ui_id=\'$c\'";
+	$state=$con->prepare($query);
+	$state->execute();
+	#sorted
+	while(my $row = $state->fetchrow_hashref){
+		my $extra=$row->{ul_date}." ".$row->{ul_env}." ".$row->{ul_ip};
+		push @log_data ,$extra; 
+	}
+	$log_count=$#log_data+1;
 }else{
 	$c="NO LOGIN";	
 }
 
-#==============================CGI 프린팅 요소==============================
+#==============================CGI DOT 프린팅 요소==============================
 my $dot_1_1=PrintBigDot("0","0","100","20").PrintSmallDot("0","0","100","20");
 my $dot_1_2=PrintBigDot("0","0","100","30").PrintSmallDot("0","0","100","30");
 my $dot_2_2=PrintBigDot("0","0","130","39").PrintSmallDot("0","0","130","39");
@@ -91,8 +103,17 @@ my $dot_r_2_2=PrintBigDot("0","0","130","10").PrintSmallDot("0","0","130","10");
 my $dot_r_2_3=PrintBigDot("0","0","70","10").PrintSmallDot("0","0","70","10");
 my $dot_r_3_1=PrintBigDot("0","0","130","30").PrintSmallDot("0","0","130","30");
 my $dot_r_3_2=PrintBigDot("0","0","70","30").PrintSmallDot("0","0","70","30");
+my $dot_log_tag=PrintBigDot("0","0","230","40").PrintSmallDot("0","0","230","40");
+my $dot_log=PrintBigDot("0","0","230","150").PrintSmallDot("0","0","230","150");
 #==============================LEFT DIV 프린팅 요소==============================
 my $emblem_box=PrintEmblemBox(\@emblem_image);
+my $key_image="image/key.png";
+my $ip_address= $q->remote_host();
+my $log_string="<p style=\"color:#FDFDD5\">$log_data[$#log_data]</p>";
+for(my $i=$#log_data-1,my $cnt=0;$cnt<4 && $i>=0;$i--,$cnt++){
+	$log_string=$log_string."<p>$log_data[$i]</p>";
+}
+
 #==============================RIGHT DIV 프린팅 요소==============================
 my $query="SELECT count(ui_id) FROM userinfo";
 my $state=$con->prepare($query);
@@ -101,6 +122,7 @@ my @row=$state->fetchrow_array;
 my $family_cnt=$row[0];		#가입자 수를 가져온다.	
 $state->finish();
 $con->disconnect();
+
 #==============================WRITE PERL CGI==============================
 print $q->header(-charset=>"UTF-8");
 
@@ -196,7 +218,8 @@ print <<EOF
                		$dot_us_2_2
                		$dot_us_2_2_m
             	</div>
-            	<div class="user_state_2_3">            
+            	<div class="user_state_2_3">  
+            		<img src="$key_image" style="position:absolute;left:10px" width="70px" height="70px">          
             	</div>
          	</div>
          	$emblem_box
@@ -211,9 +234,19 @@ print <<EOF
             	<p>Emblem</p>
             	$dot_us_1
          </div>
-         
       	</div>
-      	
+      	<div class=user_log_tag>
+      		$dot_log_tag
+      		 <a href="http://www.naver.com" class="button small default_color emblem_button_prev">
+               		VIEW ALL
+            </a>
+            <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSignin log - </p>
+            <p style="color:#FDFDD5;position:absolute;left:180px;top:1px">$log_count</p>
+      	</div>
+      	<div class=user_log>
+      		$dot_log
+      		$log_string
+      	</div>
    	</div>
 </div>
 EOF

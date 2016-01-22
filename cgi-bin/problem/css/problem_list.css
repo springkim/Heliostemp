@@ -1,0 +1,27 @@
+/*
+* @Project  : Helios
+* @Architecture : Kim Bom
+* index.css
+*
+* @Created by KimBom On 2015. 12. 27...
+* @Copyright (C) 2015 KimBom. All rights reserved.
+*/
+html, body {
+	background: url('../../image/bkgnd-dot.bmp');
+	height: 98%;
+	width: 1900px;
+}
+.left_side {
+	background-color: rgba(255, 255, 255, 0.2);
+	width: 300px;
+	height: 100%;
+	float: left;
+	position: relative;
+}
+.main_side {
+	background-color: rgba(255,0, 255, 0.2);
+	width: 1600px;
+	height: 100%;
+	float: left;
+	position: relative;
+}
