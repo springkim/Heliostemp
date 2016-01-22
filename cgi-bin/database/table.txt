@@ -20,6 +20,7 @@ create table userinfo_emblem(
 );
 create table problem(
 	pr_path varchar(260) primary key,
+	pr_title varchar(128),
 	pr_level varchar(16),
 	pr_group varchar(128),
 	pr_subgroup varchar(128)
@@ -27,7 +28,10 @@ create table problem(
 create table userinfo_problem(
 	pr_path varchar(512) references problem(pr_path),
 	ui_id varchar(512) references userinfo(ui_id),
-	uip_status varchar(128)
+	uip_language varchar(128),
+	uip_time varchar(128),
+	uip_status varchar(128),
+	primary key(pr_path,ui_id,uip_language)
 );
 create table userlog(
 	ui_id varchar(512) references userinfo(ui_id),

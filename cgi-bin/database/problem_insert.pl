@@ -4,8 +4,8 @@ use warnings;
 use DBI;
 my $con = DBI->connect( "dbi:Pg:dbname=postgres", "postgres", "kb6331" );
 
-#$con->do("delete FROM userinfo_problem");
-#$con->do("delete FROM problem");
+$con->do("delete FROM userinfo_problem");
+$con->do("delete FROM problem");
 
 
 my $state = $con->prepare("SELECT pr_path FROM problem");
@@ -30,8 +30,9 @@ foreach my $elem ( 0 .. $#files ) {
 			my $data=<FP>;
 			$data =~ /Classify:::([\w|-]+):::/;
 			my @arr=split('-',$1);
+			$data =~ /Title : ‘(.*)’/;
 			close(FP);
-			my $query = "INSERT INTO problem VALUES(\'$pr_path\',\'$arr[2]\',\'$arr[0]\',\'$arr[1]\')";
+			my $query = "INSERT INTO problem VALUES(\'$pr_path\',\'$1\',\'$arr[2]\',\'$arr[0]\',\'$arr[1]\')";
 			$con->do($query);
 		}
 	}

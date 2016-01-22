@@ -29,3 +29,5 @@ execute("SELECT * FROM userlog");
 
 execute("SELECT * FROM problem");
 
+execute("SELECT * FROM userinfo_problem");
+
