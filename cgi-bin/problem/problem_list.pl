@@ -15,6 +15,10 @@ require "../login/info.pl";
 my $q=new CGI;
 my $con = DBI->connect( GetDB(), GetID(), GetPW() );
 
+my $group=$q->param('group');	#algorithm , datastructure , math , language , contest
+my $subgroup=$q->param('subgroup');
+
+
 
 print $q->header(-charset=>"UTF-8");
 print <<EOF
@@ -28,6 +32,11 @@ print <<EOF
 	<div class=left_side>
 	
 	</div>
+EOF
+;
+
+
+print <<EOF
 	<div class=main_side>
 	
 	</div>
