@@ -27,3 +27,5 @@ execute("SELECT * FROM emblem");
 execute("SELECT * FROM userinfo_emblem");
 execute("SELECT * FROM userlog");
 
+execute("SELECT * FROM problem");
+

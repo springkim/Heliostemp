@@ -9,7 +9,7 @@
 html, body {
 	background: url('../../image/bkgnd-dot.bmp');
 	height: 98%;
-	width: 1900px;
+	width: 1880px;
 }
 .left_side {
 	background-color: rgba(255, 255, 255, 0.2);
@@ -20,7 +20,7 @@ html, body {
 }
 .main_side {
 	background-color: rgba(255,0, 255, 0.2);
-	width: 1600px;
+	width: 1580px;
 	height: 100%;
 	float: left;
 	position: relative;

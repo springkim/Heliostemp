@@ -16,7 +16,7 @@ my $q=new CGI;
 my $con = DBI->connect( GetDB(), GetID(), GetPW() );
 
 my $group=$q->param('group');	#algorithm , datastructure , math , language , contest
-my $subgroup=$q->param('subgroup');
+my $subgroup=$q->param('subgroup'); 
 
 
 
