@@ -54,3 +54,57 @@ function checkDate(i) {
  	i = i+1 ;  // to adjust real month
    	return i;
 }
+function emblem_next(){
+	var index=document.getElementById("EMBLEM_INDEX").value;
+	var sz=document.getElementById("EMBLEM_SZ").value;
+	var max_index=Math.ceil(sz/9);
+	
+	
+	var new_index=(index-0)+1;
+	if(new_index==max_index){
+		new_index=0;
+	}
+	
+	document.getElementById("STATE3_"+index).style.display="none";
+	document.getElementById("STATE3_"+new_index).style.display="block";
+	
+	var i=0;
+	var lim=Math.max(new_index * 9 , sz);
+	for(i=index * 9;i<lim;i++){
+		document.getElementById("EMBLEM_"+i).style.display="none";
+	}
+	lim=(new_index-0)+1;
+	for(i=new_index * 9;i<lim * 9 && i<sz;i++){
+		document.getElementById("EMBLEM_"+i).style.display="block";
+	}
+	
+	document.getElementById("EMBLEM_INDEX").value=new_index;
+	return false;
+}
+function emblem_prev(){
+	var index=document.getElementById("EMBLEM_INDEX").value;
+	var sz=document.getElementById("EMBLEM_SZ").value;
+	var max_index=Math.ceil(sz/9);
+	
+	
+	var new_index=(index-0)-1;
+	if(new_index==-1){
+		new_index=max_index-1;
+	}
+	
+	document.getElementById("STATE3_"+index).style.display="none";
+	document.getElementById("STATE3_"+new_index).style.display="block";
+	
+	var i=0;
+	var lim=Math.max(new_index * 9 , sz);
+	for(i=index * 9;i<lim;i++){
+		document.getElementById("EMBLEM_"+i).style.display="none";
+	}
+	lim=(new_index-0)+1;
+	for(i=new_index * 9;i<lim * 9 && i<sz;i++){
+		document.getElementById("EMBLEM_"+i).style.display="block";
+	}
+	
+	document.getElementById("EMBLEM_INDEX").value=new_index;
+	return false;
+}

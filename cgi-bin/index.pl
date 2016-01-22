@@ -6,13 +6,14 @@ use DBI;
 require 'css_helper.pl';
 require 'login/info.pl';
 require 'login/aes.pl';
+require 'emblem.pl';
 my $q=new CGI;
 my $con = DBI->connect( GetDB(), GetID(), GetPW() );
 
 my $level=2;
 my $status="OFFLINE";
 my $photo="image/personImage.png";
-my $song="mp3/iloveyou.mp3";
+my $song="mp3/rhrn.mp3";
 my $mission = "&nbsp&nbsp&nbspTODAY MISSION";
 my $log_select="LOGIN";
 my $log_href="login/login.pl";
@@ -62,6 +63,7 @@ if($c){
 	while(my @arr = $state->fetchrow_array){
 		push @emblem_image,$arr[0];
 	}
+	@emblem_image=sort @emblem_image;
 }else{
 	$c="NO LOGIN";	
 }
@@ -89,7 +91,8 @@ my $dot_r_2_2=PrintBigDot("0","0","130","10").PrintSmallDot("0","0","130","10");
 my $dot_r_2_3=PrintBigDot("0","0","70","10").PrintSmallDot("0","0","70","10");
 my $dot_r_3_1=PrintBigDot("0","0","130","30").PrintSmallDot("0","0","130","30");
 my $dot_r_3_2=PrintBigDot("0","0","70","30").PrintSmallDot("0","0","70","30");
-my $dot_emblem=PrintBigDot("0","0","0","70").PrintSmallDot("0","0","0","70");
+#==============================LEFT DIV 프린팅 요소==============================
+my $emblem_box=PrintEmblemBox(\@emblem_image);
 #==============================RIGHT DIV 프린팅 요소==============================
 my $query="SELECT count(ui_id) FROM userinfo";
 my $state=$con->prepare($query);
@@ -196,47 +199,21 @@ print <<EOF
             	<div class="user_state_2_3">            
             	</div>
          	</div>
-         	<div class= "user_state_3">
-         		<div class= "user_state_3_1">
-         			$dot_emblem
-         			<img src="$emblem_image[0]"  width="70px" height="70px">
-         		</div>
-         		<div class= "user_state_3_2">
-         			$dot_emblem
-         			<img src="$emblem_image[1]"  width="70px" height="70px">
-         		</div>
-         		<div class= "user_state_3_3">
-         			$dot_emblem
-         			<img src="$emblem_image[2]"  width="70px" height="70px">
-         		</div>
-         		<div class= "user_state_3_4">
-         			$dot_emblem
-         			<img src="$emblem_image[3]"  width="70px" height="70px">
-         		</div>
-         		<div class= "user_state_3_5">
-         			$dot_emblem
-         			<img src="$emblem_image[4]"  width="70px" height="70px">
-         		</div>
-         		<div class= "user_state_3_6">
-         			$dot_emblem
-         			<img src="$emblem_image[5]"  width="70px" height="70px">
-         		</div>
-         		<div class= "user_state_3_7">
-         			$dot_emblem
-         			<img src="$emblem_image[6]"  width="70px" height="70px">
-         		</div>
-         		<div class= "user_state_3_8">
-         			$dot_emblem
-         			<img src="$emblem_image[7]"  width="70px" height="70px">
-         		</div>
-         		<div class= "user_state_3_9">
-         			$dot_emblem
-         			<img src="$emblem_image[8]"  width="70px" height="70px">
-         		</div>
-         	</div>
+         	$emblem_box
          	
-         	
+         	<div class=user_state_4>
+            	<a href="#" class="button small default_color emblem_button_prev" onclick="return emblem_prev()">
+               		PREV
+            	</a>
+          		 <a href="#" class="button small default_color emblem_button_next" onclick="return emblem_next()">
+               		NEXT
+            	</a>
+            	<p>Emblem</p>
+            	$dot_us_1
+         </div>
+         
       	</div>
+      	
    	</div>
 </div>
 EOF
