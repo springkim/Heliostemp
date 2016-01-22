@@ -23,7 +23,9 @@ create table problem(
 	pr_title varchar(128),
 	pr_level varchar(16),
 	pr_group varchar(128),
-	pr_subgroup varchar(128)
+	pr_subgroup varchar(128),
+	pr_timelimit varchar(128),
+	pr_memlimit varchar(128)
 );
 create table userinfo_problem(
 	pr_path varchar(512) references problem(pr_path),

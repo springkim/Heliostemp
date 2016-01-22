@@ -183,7 +183,7 @@ print <<EOF
 		</div>
 		<div class="user_state">
       		<div class=user_state_1>
-            	<a href="http://www.naver.com" class="button small default_color mission_button_select">
+            	<a href="problem/problem_list.pl" class="button small default_color mission_button_select">
                		SELECT
             	</a>
             	<p>$mission</p>

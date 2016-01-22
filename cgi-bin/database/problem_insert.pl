@@ -28,11 +28,10 @@ foreach my $elem ( 0 .. $#files ) {
 			open(FP,"<../$pr_path") or die $!;
 			$/=undef;
 			my $data=<FP>;
-			$data =~ /Classify:::([\w|-]+):::/;
-			my @arr=split('-',$1);
-			$data =~ /Title : ‘(.*)’/;
+			$data =~ /HIDDEN:::(.*):::/;
+			my @arr=split(',',$1);
 			close(FP);
-			my $query = "INSERT INTO problem VALUES(\'$pr_path\',\'$1\',\'$arr[2]\',\'$arr[0]\',\'$arr[1]\')";
+			my $query = "INSERT INTO problem VALUES(\'$pr_path\',\'$arr[0]\',\'$arr[1]\',\'$arr[2]\',\'$arr[3]\',\'$arr[4]\',\'$arr[5]\')";
 			$con->do($query);
 		}
 	}

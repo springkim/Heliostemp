@@ -1,0 +1,42 @@
+/*
+* @Project  : Helios
+* @Architecture : Kim Bom
+* @designer : Hwang Dae Hyeon
+* problem.css
+*
+* @Created by KimBom On 2015. 12. 27...
+* @Copyright (C) 2015 KimBom. All rights reserved.
+*/
+@import url(https://fonts.googleapis.com/css?family=Poiret+One);
+
+@import url(https://fonts.googleapis.com/css?family=Titillium+Web:900);
+
+@import
+	url(https://fonts.googleapis.com/css?family=Roboto+Condensed:700italic)
+	;
+
+html, body {
+	background: url('../../image/bkgnd-dot.bmp');
+	height: 95%;
+	width: 1860px;
+}
+
+.left_side {
+	background-color: rgba(255, 255, 255, 0.2);
+	width: 500px;
+	height: 100%;
+	float: left;
+	position: relative;
+	border-left: 10px double #202526;
+	border-right: 10px double #202526;
+	border-top: 2px solid #202526;
+	border-bottom: 2px solid #202526;
+}
+/*###############################################*/
+.main_side {
+	background-color: rgba(255, 0, 255, 0.2);
+	width: 1500px;
+	height: 95%;
+	float: left;
+	position: relative;
+}

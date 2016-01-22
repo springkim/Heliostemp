@@ -121,7 +121,7 @@ for ( my $i = 0 ; $i <= $#problems ; $i++ ) {
 	$state->finish;
 
 	#get successd;
-	$query ="SELECT count(pr_path) FROM userinfo_problem WHERE pr_path=\'$elem[0]\' and uip_status=\'success\'";
+	$query ="SELECT count(pr_path) FROM userinfo_problem WHERE pr_path=\'$elem[0]\' and uip_status=\'accepted\'";
 	$state = $con->prepare($query);
 	$state->execute;
 	my $succ = $state->fetchrow_array;
@@ -164,9 +164,12 @@ print <<EOF
 			<input type="hidden" id="GROUP" name="GROUP"/>
 			<input type="hidden" id="SUBGROUP" name="SUBGROUP"/>
 			<input type="hidden" id="OTHER_PARAM" name="OTHER_PARAM"/>
+			<div class = redpoint style = "position:absolute;width:10px;height:10px;top:33px;left:-5px"></div>
 			$id_hidden
 			<div class=left_side_1>
 				<p>Problem List</p>
+				<img src="../image/problem_list.png" width="50px", height="50px" style="position:absolute;top:0px;right:0px">
+				<div class = redpoint style = "position:absolute;width:5px;height:5px;top:57px;left:278px"></div>
 			</div>
 			<div class=left_side_2>
 				<p>The Number of Problem</p>
@@ -211,6 +214,7 @@ print <<EOF
 				$tree_html
 	  			
 			</div>
+			<div class = redpoint style = "position:absolute;width:50px;height:10px;top:850px;left:-5px"></div>
 		</form>
 	</div>
 EOF
