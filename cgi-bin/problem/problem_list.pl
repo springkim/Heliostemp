@@ -225,7 +225,11 @@ print <<EOF
 		<form action="problem.pl" method="post" name="PROBLEM_VIEW">
 			<input type="hidden" id="PR_PATH" name="PR_PATH"/>
 			<div class=main_up>
+				
 				<p>Copyright (C) 2016 KimBom,HwangDaeHyeon. All rights reserved.</p>
+				<section class="webdesigntuts-workshop">
+					<input type="button" value="main" onclick="location.href='../index.pl';" style="width:80px;position:absolute;left:-1300px;top:-230px"></input>
+				</section>
 			</div>
 			<div class=p_div>
 				$table_html
