@@ -10,6 +10,9 @@ create table userinfo(
 	ui_salt1 varchar(512),
 	ui_salt2 varchar(512)
 );
+create table admin(
+	ui_id varchar(512) references userinfo(ui_id)
+);
 create table emblem(
 	eb_name varchar(512) primary key,
 	eb_path varchar(260)
@@ -35,6 +38,7 @@ create table userinfo_problem(
 	uip_status varchar(128),
 	primary key(pr_path,ui_id,uip_language)
 );
+
 create table userlog(
 	ui_id varchar(512) references userinfo(ui_id),
 	ul_date varchar(512),

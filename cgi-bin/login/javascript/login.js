@@ -6,8 +6,8 @@ function id_submit() {
 		alert("Please enter id.");
 		return false;
 	}
-	var enc_id = CryptoJS.SHA3(id);
-	document.getElementById("HID").value = enc_id;
+	//var enc_id = CryptoJS.SHA3(id);
+	document.getElementById("HID").value = id;
 	return true;
 }
 function pw_submit() {

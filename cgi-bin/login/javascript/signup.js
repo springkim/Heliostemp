@@ -46,6 +46,11 @@ function CheckSubmit() {
 		alert("confirm password error");
 		return false;
 	}
+	//확인 아이디 검사
+	if(cid_keyup()==false){
+		alert("confirm id error");
+		return false;
+	}
 	// 파일 확장자 검사
 	if (file_chk() == false) {
 		alert("file upload error");
@@ -54,9 +59,9 @@ function CheckSubmit() {
 	// SHA3 암호화
 	var salt=CryptoJS.lib.WordArray.random(32);
 	var enc_pw=CryptoJS.SHA3(salt+pw);
-	var enc_id=CryptoJS.SHA3(id);
+	//var enc_id=CryptoJS.SHA3(id);
 	document.getElementById("HPW").value = enc_pw;
-	document.getElementById("HID").value = enc_id;
+	document.getElementById("HID").value = id;
 	document.getElementById("HSALT").value = salt;
 	return true;
 	
@@ -77,12 +82,12 @@ function id_keyup() {
 	var already_id = ids.split(',');
 	var id = document.getElementById("ID").value;
 	if (id.length >= 4) {
-		var enc_id=CryptoJS.SHA3(id);
+		//var enc_id=CryptoJS.SHA3(id);
 		var char4 = document.getElementById("char4");
 		char4.style.visibility = "hidden";
 		for ( var i in already_id) {
 			// 이미 존재하는 ID일경우 오류 출력
-			if (already_id[i] == enc_id) {
+			if (already_id[i] == id) {
 				var sameid = document.getElementById("sameid");
 				sameid.style.visibility = "visible";
 				return false;
@@ -99,6 +104,23 @@ function id_keyup() {
 		return false;
 	}
 	return true;
+}
+/**
+ * @name : cid_keyup
+ * @check1 : 비밀번호와 같은지 검사
+ */
+function cid_keyup() {
+	var id = document.getElementById("ID").value;
+	var cid = document.getElementById("CID").value;
+	if (cid == id) {
+		var c_id = document.getElementById("cid");
+		c_id.style.visibility = "hidden";
+		return true;
+	} else {
+		var c_id = document.getElementById("cid");
+		c_id.style.visibility = "visible";
+		return false;
+	}
 }
 /**
  * @name : pw_keyup

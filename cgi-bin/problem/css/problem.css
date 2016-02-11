@@ -20,131 +20,11 @@ html, body {
 	height: 95%;
 	width: 1860px;
 }
-.p_div {
-	background-color: rgba(255, 0, 255, 0);
-	width: 1450px;
-	height: 100%;
-	position: absolute;
-	left: 25px;
-	top: 85px;
-	
-}
-
-.p_list {
-	margin: 0px;
-	padding: 0px;
-	width: 100%;
-	border: 1px solid #202526; -moz-border-radius-bottomleft : 0px;
-	-webkit-border-bottom-left-radius: 0px;
-	border-bottom-left-radius: 0px;
-	-moz-border-radius-bottomright: 0px;
-	-webkit-border-bottom-right-radius: 0px;
-	border-bottom-right-radius: 0px;
-	-moz-border-radius-topright: 0px;
-	-webkit-border-top-right-radius: 0px;
-	border-top-right-radius: 0px;
-	-moz-border-radius-topleft: 0px;
-	-webkit-border-top-left-radius: 0px;
-	border-top-left-radius: 0px;
-	-moz-border-radius-bottomleft: 0px;
-}
-
-.p_list table {
-	border-collapse: collapse;
-	border-spacing: 0;
-	width: 100%;
-	height: 20px;
-	margin: 0px;
-	padding: 0px;
-}
-
-.p_list tr:last-child td:last-child {
-	-moz-border-radius-bottomright: 0px;
-	-webkit-border-bottom-right-radius: 0px;
-	border-bottom-right-radius: 0px;
-}
-
-.p_list table tr:first-child td:first-child {
-	-moz-border-radius-topleft: 0px;
-	-webkit-border-top-left-radius: 0px;
-	border-top-left-radius: 0px;
-}
-
-.p_list table tr:first-child td:last-child {
-	-moz-border-radius-topright: 0px;
-	-webkit-border-top-right-radius: 0px;
-	border-top-right-radius: 0px;
-}
-
-.p_list tr:last-child td:first-child {
-	-moz-border-radius-bottomleft: 0px;
-	-webkit-border-bottom-left-radius: 0px;
-	border-bottom-left-radius: 0px;
-}
-
-.p_list tr:hover td {
-	
-}
-
-.p_list tr:nth-child(odd) {
-	background-color: rgba(96, 190, 204, 0.05);
-}
-
-.p_list tr:nth-child(even) {
-	background-color: rgba(96, 190, 204, 0.15);
-}
-
-.p_list td {
-	vertical-align: middle;
-	border: 1px solid #202526;
-	border-width: 0px 1px 1px 0px;
-	text-align: left;
-	padding: 8px;
-	font-size: 15px;
-	font-family: 'Arial';
-	font-weight: bold;
-	color:#8CACB2;
-}
-
-.p_list tr:last-child td {
-	border-width: 0px 1px 0px 0px;
-}
-
-.p_list tr td:last-child {
-	border-width: 0px 0px 1px 0px;
-}
-
-.p_list tr:last-child td:last-child {
-	border-width: 0px 0px 0px 0px;
-}
-
-.p_list tr:first-child td {
-	background-color: rgba(96, 190, 204, 0.4);
-	border: 0px solid #202526;
-	text-align: center;
-	border-width: 0px 0px 1px 1px;
-	font-size: 14px;
-	font-family: Arial;
-	font-weight: bold;
-	color: #ffffff;
-}
-
-.p_list tr:first-child:hover td {
-	background-color: rgba(96, 190, 204, 0.8);
-}
-
-.p_list tr:first-child td:first-child {
-	border-width: 0px 0px 1px 0px;
-}
-
-.p_list tr:first-child td:last-child {
-	border-width: 0px 0px 1px 1px;
-}
-
 .left_side {
+	top: 36px;
 	background-color: rgba(255, 255, 255, 0);
 	width: 600px;
-	height: 100%;
+	height: 900px;
 	float: left;
 	position: relative;
 	border-left: 2px solid #64777D;
@@ -154,8 +34,8 @@ html, body {
 }
 .left_side_1{
 	background-color: rgba(255, 255, 0, 0);
-	width: 97%;
-	height: 10%;
+	width: 580px;
+	height: 90px;
 	float: left;
 	left: 20px;
 	position: relative;
@@ -163,8 +43,8 @@ html, body {
 }
 .left_side_1_1{
 	background-color: rgba(255, 20, 0, 0);
-	width: 20%;
-	height: 100%;
+	width: 170px;
+	height: 90px;
 	float: left;
 	position: relative;
 	color: #DEE8E7;
@@ -174,7 +54,7 @@ html, body {
 }
 .left_side_1_2{
 	background-color: rgba(255, 20, 0, 0);
-	width: 70%;
+	width: 65%;
 	top: 30px;
 	height: 15px;
 	float: right;
@@ -193,7 +73,7 @@ html, body {
 }
 .left_side_2{
 	background-color: rgba(255, 255, 0, 0);
-	width: 97%;
+	width: 580px;
 	height: 5%;
 	top : 10px;
 	float: left;
@@ -203,13 +83,13 @@ html, body {
 	border-bottom: 2px solid #64777D;
 	font-family: 'Arial';
 	font-weight: bold;
-	font-size:20px;
-	line-height: 3px;
-	color: #BFC2AF;
+	font-size:15px;
+	line-height: 15px;
+	color: #ef8383;
 }
 .left_side_3{
 	background-color: rgba(255, 255, 0, 0);
-	width: 97%;
+	width: 580px;
 	height: 5%;
 	top : 20px;
 	float: left;
@@ -219,10 +99,114 @@ html, body {
 	border-bottom: 2px solid #64777D;
 	font-family: 'Arial';
 	font-weight: bold;
-	font-size:20px;
-	line-height: 3px;
-	color: #BFC2AF;
+	font-size:15px;
+	line-height: 15px;
+	color: #babdb6;
 }
+.left_side_4{
+	background-color: rgba(255, 255, 0, 0);
+	width: 97%;
+	height: 50%;
+	top : 30px;
+	float: left;
+	left: 20px;
+	position: relative;
+	border-top:1px solid #274F57;
+	font-family: 'Poiret One', cursive;
+	font-weight: bold;
+	font-size:30px;
+	line-height: 15px;
+	color: #FAF4C0;
+}
+table.type07 {
+	width: 500px;
+	left: 20px;
+	position: relative;
+	text-align: left;
+	font-size: 20px;
+	font-family: sans-serif;
+	color: #fcf1f4;
+	text-align: center;
+}
+
+table.type07 tbody th {
+	width: 80px;
+	height: 30px;
+	color: #fcf1f4;
+	background-color: rgba(96, 190, 204, 0.15);
+	border-top :1px solid rgba(0, 0, 0, 0.5);
+	border-bottom :1px solid rgba(0, 0, 0, 0.5);
+	border-left :1px solid rgba(0, 0, 0, 0.5);
+	border-right :1px solid rgba(0, 0, 0, 0.5);
+}
+
+table.type07 td {
+	width: 200px;
+	height: 30px;
+	vertical-align: center;
+	background-color: rgba(96, 190, 204, 0.15);
+	border-top :1px solid rgba(0, 0, 0, 0.5);
+	border-bottom :1px solid rgba(0, 0, 0, 0.5);
+	border-left :1px solid rgba(0, 0, 0, 0.5);
+	border-right :1px solid rgba(0, 0, 0, 0.5);
+	
+}
+.left_side_5{
+	background-color: rgba(255, 255, 0, 0);
+	position: absolute;
+	bottom : 50px;
+	width: 100%;
+	height: 5%;
+	float: left;
+	left: 0px;
+	font-family: 'Arial';
+	font-weight: bold;
+	font-size:15px;
+	line-height: 15px;
+	color: #babdb6;
+}
+.left_side_6{
+	background-color: rgba(255, 255, 0, 0);
+	width: 100%;
+	height: 5%;
+	float: left;
+	left: 0px;
+	bottom : 0px;
+	position: absolute;
+
+	font-family: 'Arial';
+	font-weight: bold;
+	font-size:15px;
+	line-height: 15px;
+	color: #babdb6;
+}
+.button {
+	background-color: rgba(40, 81, 88, 0.5);
+	position: relative;
+	top: 10px;
+	font-size:15px;
+	height : 60%;
+	width : 60%;
+	left : 120px;
+	cursor: pointer;
+	text-align: center;
+	line-height: 22px;
+	font:Arial, Helvetica, sans-serif;
+	-webkit-border-radius: .5em;
+	-moz-border-radius: .5em;
+	border-radius: .2em;
+	
+}
+
+.button:hover {
+	text-decoration: none;
+}
+
+.button:active {
+	position: relative;
+	top: 10px;
+}
+
 /*###############################################*/
 .main_side {
 	background-color: rgba(255, 0, 255, 0);
@@ -251,3 +235,4 @@ html, body {
 	border-left: 2px solid #35464C;
 	border-right: 2px solid #35464C;
 }
+

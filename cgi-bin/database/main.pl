@@ -10,11 +10,9 @@ sub DropTable($){
 	my @table= $data=~/create table ([[:alpha:]|_|\d]*)/g;
 	my $query="drop table ";
 	my $in;
-	foreach $in(@table){
-		$query=$query.$in.",";
+	for(my $i=$#table;$i>=0;$i--){
+		$con->do($query.$table[$i]);
 	}
-	chop($query);
-	$con->do($query);
 }
 sub CreateTable($){
 	my $data=shift;
@@ -32,7 +30,7 @@ $/=undef;
 my $data=<TEXT>;
 
 DropTable($data);
-DeleteUserPhoto();
+#DeleteUserPhoto();
 CreateTable($data);
 
 

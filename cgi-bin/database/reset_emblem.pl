@@ -4,8 +4,8 @@ use warnings;
 use DBI;
 my $con = DBI->connect( "dbi:Pg:dbname=postgres", "postgres", "kb6331" );
 
-$con->do("delete FROM userinfo_emblem");
-$con->do("delete FROM emblem");
+#$con->do("delete FROM userinfo_emblem");
+#$con->do("delete FROM emblem");
 
 
 my $state = $con->prepare("SELECT eb_name FROM emblem");

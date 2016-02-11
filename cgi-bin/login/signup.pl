@@ -55,7 +55,8 @@ else {
 	$state->finish();
 	$con->disconnect();
 }
-
+#=======================================DEBUG=================
+my $visible="hidden";
 #==============================CGI 부분==============================
 print $q->header( -charset => "UTF-8" );
 print <<EOF
@@ -78,18 +79,21 @@ print <<EOF
 	<div class="outer"><div class="inner"><div class="centered-top"></div><div class="centered">
 		<div class="centered_inner_right"></div>
 		<div id="msg" class="centered_inner_right2">
-			<div class='warn' id="sameid" style="visibility:hidden;top:177px">The same id exist</div>
-			<div class='warn' id="char4" style="visibility:hidden;top:137px">Id must be at least 4 char</div>
-			<div class='warn' id="pass4" style="visibility:hidden;top:147px">Password is too short</div>
-			<div class='warn' id="ivchar" style="visibility:hidden;top:107px">Invaild character</div>
-			<div class='warn' id="cpass" style="visibility:hidden;top:117px">not matching password</div>
-			<div class='warn' id="namechk" style="visibility:hidden;top:127px">input your name</div>
-			<div class='warn' id="guildchk" style="visibility:hidden;top:137px">input your guild</div>
-			<div class='warn' id="phonechk" style="visibility:hidden;top:147px">input your phone</div>
-			<div class='warn' id="emchk" style="visibility:hidden;top:157px">This is not a valid e-mail</div>
+			<div class='warn' id="sameid" style="visibility:$visible;top:177px">The same id exist</div>
+			<div class='warn' id="char4" style="visibility:$visible;top:137px">Id must be at least 4 char</div>
+			<div class='warn' id="cid" style="visibility:$visible;top:145px">not matching ID</div>
+			
+			<div class='warn' id="pass4" style="visibility:$visible;top:154px">Password is too short</div>
+			<div class='warn' id="ivchar" style="visibility:$visible;top:114px">Invaild character</div>
+			<div class='warn' id="cpass" style="visibility:$visible;top:124px">not matching password</div>
+			<div class='warn' id="namechk" style="visibility:$visible;top:134px">input your name</div>
+			<div class='warn' id="guildchk" style="visibility:$visible;top:144px">input your guild</div>
+			<div class='warn' id="phonechk" style="visibility:$visible;top:154px">input your phone</div>
+			<div class='warn' id="emchk" style="visibility:$visible;top:164px">This is not a valid e-mail</div>
 		</div>
 		<div class="centered_inner_left">
 			<p class="leftP">Your best id</p>
+			<p class="leftP">Confirm id</p>
 			<p class="leftP">Safety password</p>
 			<p class="leftP">Confirm password</p>
 			<p class="leftP">What`s your name?</p>
@@ -105,6 +109,7 @@ print <<EOF
 			<input type="hidden" id="HSALT" name="HSALT" value=""></input>
 			
 			<input type="text" id="ID" autocomplete="off" name="ID" placeholder="ID" onkeyup="id_keyup()" onblur="id_keyup()" maxlength="64"></input>
+			<input type="text" id="CID" autocomplete="off" name="CID" placeholder="Confirm ID" onkeyup="cid_keyup()" onblur="cid_keyup()" maxlength="64"></input>
 			<input type="password" id="PW" autocomplete="off" name="PW" placeholder="PW" onkeyup="pw_keyup()" onblur="pw_keyup()" maxlength="64"></input>
 			<input type="password" id="CPW" autocomplete="off" name="CPW" placeholder="confirm PW" onkeyup="cpw_keyup()" onblur="pw_keyup()" maxlength="64"></input>
 			<input type="text" id="NAME" autocomplete="off" name="NAME" placeholder="NAME" maxlength="64" onkeyup="nempty_keyup('NAME','namechk')" onblur="nempty_keyup('NAME','namechk')"></input>
