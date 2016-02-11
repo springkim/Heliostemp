@@ -1,0 +1,27 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+use DBI;
+require 'info.pl';
+my $con = DBI->connect( GetDB(), GetUserName(), GetPassword() );
+$con->do("INSERT INTO userinfo VALUES('root','40e8192f2ff75e8f5eae9fde55bc8c9c37ae6e7413c1945f0d810c82ea76bbae92b108dc6084f70cd6a69dc520caba453a7feea70d2204448f3a8657e9e1999b','root','root','123','root\@root.root','root.jpg','0','919a5b6ce85d5a1e6e0409e09da53fb6f92a8738b76a19e810186c6facc6f824','ERfkR8/y9LRZlwhHmnJqKi92lclUGJSR')");
+$con->do("INSERT INTO emblem VALUES('r','image/emblem/1_r.png')");
+$con->do("INSERT INTO emblem VALUES('tree','image/emblem/2_tree.png')");
+$con->do("INSERT INTO emblem VALUES('lisp','image/emblem/1_lisp.png')");
+$con->do("INSERT INTO emblem VALUES('fortran','image/emblem/1_fortran.png')");
+$con->do("INSERT INTO emblem VALUES('list','image/emblem/2_list.png')");
+$con->do("INSERT INTO emblem VALUES('graph','image/emblem/2_graph.png')");
+$con->do("INSERT INTO emblem VALUES('c','image/emblem/1_c.png')");
+$con->do("INSERT INTO emblem VALUES('java','image/emblem/1_java.png')");
+$con->do("INSERT INTO emblem VALUES('python','image/emblem/1_python.png')");
+$con->do("INSERT INTO emblem VALUES('pascal','image/emblem/1_pascal.png')");
+$con->do("INSERT INTO emblem VALUES('perl','image/emblem/1_perl.png')");
+$con->do("INSERT INTO emblem VALUES('cpp','image/emblem/1_cpp.png')");
+$con->do("INSERT INTO problem VALUES('problem/problem_list/d0001.html','링크드리스트 구현','1','datastructure','list','1','128')");
+$con->do("INSERT INTO problem VALUES('problem/problem_list/e0001.html','두 숫자 더하기','1','algorithm','basic','1','128')");
+$con->do("INSERT INTO problem VALUES('problem/problem_list/e0005.html','A를 찾아라!!','2','algorithm','basic','1','128')");
+$con->do("INSERT INTO problem VALUES('problem/problem_list/e0004.html','홀수 짝수 판별','1','algorithm','basic','1','128')");
+$con->do("INSERT INTO problem VALUES('problem/problem_list/e0002.html','숫자들의 합','1','algorithm','basic','1','128')");
+$con->do("INSERT INTO problem VALUES('problem/problem_list/e0003.html','약수 구하기','1','algorithm','basic','1','128')");
+$con->do("INSERT INTO userlog VALUES('root','2016.2.11. 22:15:10','127.0.0.1','Chrome 47.0')");
+$con->disconnect;

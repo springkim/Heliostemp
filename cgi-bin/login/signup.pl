@@ -39,7 +39,7 @@ if ($id) {
 	copy( $upload_file, "photo/$photo_path" );	#파일을 저장합니다.
 	my $p_salt=salt(32);
 	$pw=sha3_512_hex($p_salt.$pw);
-	my $query = "INSERT INTO userinfo values(\'$id\',\'$pw\',\'$name\',\'$guild\',\'$phone\',\'$email\',\'$photo_path\',0,\'$salt\',\'$p_salt\')";
+	my $query = "INSERT INTO userinfo values(\'$id\',\'$pw\',\'$name\',\'$guild\',\'$phone\',\'$email\',\'$photo_path\',\'0\',\'$salt\',\'$p_salt\')";
 	$con->do($query);
 	$con->disconnect();
 	print $q->redirect('login.pl');

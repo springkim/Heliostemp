@@ -50,7 +50,7 @@ if($c){
 	my $state=$con->prepare($query);
 	$state->execute();
 	my $row=$state->fetchrow_hashref;
-	$level=$row->{ui_level} + 1;
+	$level=int($row->{ui_level}) + 1;
 	$status="ONLINE";
 	$photo="login/photo/".$row->{ui_photo};
 	$log_select="LOGOUT";
