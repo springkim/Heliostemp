@@ -20,14 +20,14 @@ function level_problem(param){
 function solve_problem(){
 	var id=document.getElementById("HID").value;
 	var d=document.getElementById("OTHER_PARAM");
-	d.value="SELECT problem.pr_path,pr_title,pr_level,pr_group,pr_subgroup FROM problem,userinfo_problem WHERE userinfo_problem.ui_id=\'" + id + "\' and problem.pr_path=userinfo_problem.pr_path and userinfo_problem.uip_status=\'accepted\'";
+	d.value="SELECT problem.pr_path,pr_title,pr_level,pr_group,pr_subgroup FROM problem,userinfo_problem WHERE userinfo_problem.ui_id=\'" + id + "\' and problem.pr_path=userinfo_problem.pr_path and userinfo_problem.uip_status=\'Accepted\'";
 	document.PROBLEM_LIST_VIEW.submit();
 	return false;
 }
 function try_problem(){
 	var id=document.getElementById("HID").value;
 	var d=document.getElementById("OTHER_PARAM");
-	d.value="SELECT problem.pr_path,pr_title,pr_level,pr_group,pr_subgroup FROM problem,userinfo_problem WHERE userinfo_problem.ui_id=\'" + id + "\' and problem.pr_path=userinfo_problem.pr_path and userinfo_problem.uip_status<>\'accepted\'";
+	d.value="SELECT problem.pr_path,pr_title,pr_level,pr_group,pr_subgroup FROM problem,userinfo_problem WHERE userinfo_problem.ui_id=\'" + id + "\' and problem.pr_path=userinfo_problem.pr_path and userinfo_problem.uip_status<>\'Accepted\'";
 	document.PROBLEM_LIST_VIEW.submit();
 	return false;
 }
@@ -35,7 +35,7 @@ function non_solve_problem(){
 	var id=document.getElementById("HID").value;
 	var d=document.getElementById("OTHER_PARAM");
 	var all_p="SELECT problem.pr_path,pr_title,pr_level,pr_group,pr_subgroup FROM problem";
-	var solve_p="SELECT problem.pr_path,pr_title,pr_level,pr_group,pr_subgroup FROM problem,userinfo_problem WHERE userinfo_problem.ui_id=\'" + id + "\' and problem.pr_path=userinfo_problem.pr_path and userinfo_problem.uip_status=\'accepted\'";
+	var solve_p="SELECT problem.pr_path,pr_title,pr_level,pr_group,pr_subgroup FROM problem,userinfo_problem WHERE userinfo_problem.ui_id=\'" + id + "\' and problem.pr_path=userinfo_problem.pr_path and userinfo_problem.uip_status=\'Accepted\'";
 	
 	d.value="("+all_p+")except("+solve_p+")";
 	

@@ -4,7 +4,7 @@
 * @designer : Hwang Dae Hyeon
 * problem.css
 *
-* @Created by KimBom On 2015. 12. 27...
+* @Created by KimBom and Hwang Dae Hyun On 2015. 12. 27...
 * @Copyright (C) 2015 KimBom. All rights reserved.
 */
 @import url(https://fonts.googleapis.com/css?family=Poiret+One);
@@ -51,6 +51,7 @@ html, body {
 	font-family: 'Poiret One', cursive;
 	font-size:40px;
 	line-height: 5px;
+	
 }
 .left_side_1_2{
 	background-color: rgba(255, 20, 0, 0);
@@ -72,7 +73,7 @@ html, body {
 	
 }
 .left_side_2{
-	background-color: rgba(255, 255, 0, 0);
+	background-color: rgba(96, 190, 204, 0);
 	width: 580px;
 	height: 5%;
 	top : 10px;
@@ -88,7 +89,7 @@ html, body {
 	color: #ef8383;
 }
 .left_side_3{
-	background-color: rgba(255, 255, 0, 0);
+	background-color: rgba(96, 190, 204, 0);
 	width: 580px;
 	height: 5%;
 	top : 20px;
@@ -119,11 +120,11 @@ html, body {
 	color: #FAF4C0;
 }
 table.type07 {
-	width: 500px;
+	width: 90%;
 	left: 20px;
 	position: relative;
 	text-align: left;
-	font-size: 20px;
+	font-size: 15px;
 	font-family: sans-serif;
 	color: #fcf1f4;
 	text-align: center;
@@ -154,15 +155,31 @@ table.type07 td {
 .left_side_5{
 	background-color: rgba(255, 255, 0, 0);
 	position: absolute;
-	bottom : 50px;
+	bottom : 40px;
 	width: 100%;
-	height: 5%;
+	height: 60px;
 	float: left;
 	left: 0px;
 	font-family: 'Arial';
 	font-weight: bold;
 	font-size:15px;
 	line-height: 15px;
+	color: #babdb6;
+}
+.left_side_5_1{
+	background-color: rgba(22, 255, 150, 0);
+	position: absolute;
+	bottom : 0px;
+	width: 60%;
+	height: 20px;
+	float: left;
+	left: 120px;
+	font-family: 'Arial';
+	
+	font-weight: bold;
+	font-size:15px;
+	line-height: 15px;
+	border-bottom :1px solid rgba(96, 190, 204, 0);
 	color: #babdb6;
 }
 .left_side_6{
@@ -185,7 +202,7 @@ table.type07 td {
 	position: relative;
 	top: 10px;
 	font-size:15px;
-	height : 60%;
+	height : 20px;
 	width : 60%;
 	left : 120px;
 	cursor: pointer;
@@ -195,7 +212,6 @@ table.type07 td {
 	-webkit-border-radius: .5em;
 	-moz-border-radius: .5em;
 	border-radius: .2em;
-	
 }
 
 .button:hover {

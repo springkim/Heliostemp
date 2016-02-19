@@ -32,10 +32,9 @@ my $salt        = $q->param('HSALT');
 #$id='root';$pw='root';$name='root';$guild='root';$phone='1234';$email='root';$salt='abvs';
 my $ids = "";    #데이터베이스의 아이디 목록입니다.
 #==============================회원가입을 완료했을때 호출됩니다..==============================
-
 if ($id) {
 	$upload_file =~ m<.+\.(\w+)?$>;    #확장자를 추출합니다.
-	my $photo_path = "$id.$1";
+	my $photo_path = "$id-0-.$1";
 	copy( $upload_file, "photo/$photo_path" );	#파일을 저장합니다.
 	my $p_salt=salt(32);
 	$pw=sha3_512_hex($p_salt.$pw);

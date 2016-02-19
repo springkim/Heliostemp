@@ -42,7 +42,7 @@ if($c){
 	$c=AES_Decrypt($c);
 }
 if($c){
-	$query = "SELECT COUNT(pr_path) FROM  userinfo_problem 	WHERE ui_id=\'$c\' AND uip_status =\'success\'";
+	$query = "SELECT COUNT(pr_path) FROM  userinfo_problem 	WHERE ui_id=\'$c\' AND uip_status =\'Accepted\'";
 	$state = $con->prepare($query);
 	$state->execute;
 	@arr = $state->fetchrow_array;
@@ -120,11 +120,11 @@ for ( my $i = 0 ; $i <= $#problems ; $i++ ) {
 	my $try = $state->fetchrow_array;
 	$state->finish;
 
-	#get successd;
-	$query ="SELECT count(pr_path) FROM userinfo_problem WHERE pr_path=\'$elem[0]\' and uip_status=\'accepted\'";
+	#get successed;
+	$query ="SELECT count(pr_path) FROM userinfo_problem WHERE pr_path=\'$elem[0]\' and uip_status=\'Accepted\'";
 	$state = $con->prepare($query);
 	$state->execute;
-	my $succ = $state->fetchrow_array;
+	my $succ =  $state->fetchrow_array;
 	$state->finish;
 
 	#get rate

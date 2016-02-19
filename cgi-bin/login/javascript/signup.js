@@ -226,7 +226,7 @@ function tel_keyup() {
  */
 function file_chk() {
 	var file = document.getElementById("FILE").value;
-	var execs = new Array(".jpg", ".gif", ".tif", ".bmp", ".png");
+	var execs = new Array(".jpg", ".gif",  ".bmp", ".png",".jpeg");
 	var bSubmitCheck = false;
 	if (!file) {
 		alert("please select your photo");

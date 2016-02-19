@@ -10,13 +10,14 @@ require 'emblem.pl';
 my $q=new CGI;
 my $con = DBI->connect( GetDB(), GetID(), GetPW() );
 
-my $level=2;
+my $level=1;
 my $status="OFFLINE";
 my $photo="image/personImage.png";
 my $song="mp3/rhrn.mp3";
 my $mission = "&nbsp&nbsp&nbspTODAY MISSION";
 my $log_select="LOGIN";
 my $log_href="login/login.pl";
+my $log_info="login/user_info.pl";
 my $log_text="WELCOME";
 #======
 my $total_problem="256";
@@ -77,7 +78,7 @@ if($c){
 	}
 	$log_count=$#log_data+1;
 }else{
-	$c="NO LOGIN";	
+	$c="NO LOGIN";
 }
 
 #==============================CGI DOT 프린팅 요소==============================
@@ -285,6 +286,42 @@ print <<EOF
 	</div>
 	<div class="right_side_3_2">
 		<p>$log_text</p>
+		$dot_r_3_2
+	</div>
+    <div class="right_side_4">
+        <figure>
+            <div class="face front"></div>
+            <div class="face top"></div>
+            <div class="face right"></div>
+            <div class="face left"></div>
+            <div class="face bottom"></div>
+            <div class="face back"></div>
+        </figure>
+        <figure>
+            <div class="face front"></div>
+            <div class="face top"></div>
+            <div class="face right"></div>
+            <div class="face left"></div>
+            <div class="face bottom"></div>
+            <div class="face back"></div>
+        </figure>
+        <figure>
+            <div class="face front"></div>
+            <div class="face top"></div>
+            <div class="face right"></div>
+            <div class="face left"></div>
+            <div class="face bottom"></div>
+            <div class="face back"></div>
+        </figure>
+    </div>
+    <div class="right_side_5_1">
+		<a href="$log_info" class="button small default_color log_info">
+			USER INFO
+		</a>
+		$dot_r_3_1
+	</div>
+	<div class="right_side_5_2">
+		<p>CONFIG</p>
 		$dot_r_3_2
 	</div>
 </div>
